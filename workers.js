@@ -3906,7 +3906,7 @@ async function validateServerToken(authToken, env) {
         const tokenTimestamp = parseInt(timestamp);
         const now = Date.now();
 
-        const FIFTEEN_MINUTES = 15 * 60 * 1000;
+        const FIFTEEN_MINUTES = 300 * 60 * 1000;
         if (now - tokenTimestamp > FIFTEEN_MINUTES) {
             return {
                 isValid: false,
