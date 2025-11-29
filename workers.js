@@ -1711,11 +1711,11 @@ const HTML_CONTENT = `
             <div class="search-container">
                 <div class="search-bar">
                     <select id="search-engine-select">
+                        <option value="in_site" selected>站内搜索</option>
                         <option value="baidu">百度</option>
                         <option value="bing">必应</option>
                         <option value="google">谷歌</option>
                         <option value="duckduckgo">DuckDuckGo</option>
-                        <option value="in_site">站内搜索</option>
                     </select>
                     <input type="text" id="search-input" placeholder="">
                     <button id="search-button">🔍</button>
@@ -1860,15 +1860,23 @@ const HTML_CONTENT = `
     <div id="custom-tooltip"></div>
 
     <script>
-    // 搜索引擎配置
-    const searchEngines = {
-        baidu: "https://www.baidu.com/s?wd=",
-        bing: "https://www.bing.com/search?q=",
-        google: "https://www.google.com/search?q=",
-        duckduckgo: "https://duckduckgo.com/?q="
+    const SEARCH_MODES = {
+        IN_SITE: 'in_site',
+        BAIDU: 'baidu',
+        BING: 'bing',
+        GOOGLE: 'google',
+        DUCKDUCKGO: 'duckduckgo'
     };
 
-    let currentEngine = "baidu";
+    // 搜索引擎配置
+    const searchEngines = {
+        [SEARCH_MODES.BAIDU]: "https://www.baidu.com/s?wd=",
+        [SEARCH_MODES.BING]: "https://www.bing.com/search?q=",
+        [SEARCH_MODES.GOOGLE]: "https://www.google.com/search?q=",
+        [SEARCH_MODES.DUCKDUCKGO]: "https://duckduckgo.com/?q="
+    };
+
+    let currentSearchMode = SEARCH_MODES.IN_SITE;
     let isShowingSearchResults = false;
 
     // 日志记录函数
@@ -1879,10 +1887,10 @@ const HTML_CONTENT = `
     }
 
     // 设置当前搜索模式
-    function setActiveEngine(engine) {
-        const previousMode = currentEngine;
-        currentEngine = engine;
-        document.getElementById('search-engine-select').value = engine;
+    function setActiveSearchMode(mode) {
+        const previousMode = currentSearchMode;
+        currentSearchMode = mode;
+        document.getElementById('search-engine-select').value = mode;
         updateSearchPlaceholder();
 
         if (isInSiteSearchMode()) {
@@ -1892,20 +1900,20 @@ const HTML_CONTENT = `
             } else {
                 filterBookmarksByKeyword(currentValue);
             }
-        } else if (previousMode === 'in_site' && isShowingSearchResults) {
+        } else if (previousMode === SEARCH_MODES.IN_SITE && isShowingSearchResults) {
             hideSearchResults();
         }
 
-        logAction('设置搜索模式', { mode: engine });
+        logAction('设置搜索模式', { mode });
     }
 
     // 搜索引擎选择框变更事件
     document.getElementById('search-engine-select').addEventListener('change', function() {
-        setActiveEngine(this.value);
+        setActiveSearchMode(this.value);
     });
 
     function isInSiteSearchMode() {
-        return currentEngine === 'in_site';
+        return currentSearchMode === SEARCH_MODES.IN_SITE;
     }
 
     function updateSearchPlaceholder() {
@@ -1929,13 +1937,13 @@ const HTML_CONTENT = `
             return;
         }
 
-        const engineUrl = searchEngines[currentEngine];
+        const engineUrl = searchEngines[currentSearchMode];
         if (!engineUrl) {
-            console.warn('未配置的搜索引擎:', currentEngine);
+            console.warn('未配置的搜索引擎:', currentSearchMode);
             return;
         }
 
-        logAction('执行搜索', { engine: currentEngine, query });
+        logAction('执行搜索', { engine: currentSearchMode, query });
         window.open(engineUrl + encodeURIComponent(query), '_blank');
     });
 
@@ -1961,7 +1969,7 @@ const HTML_CONTENT = `
     });
 
     // 初始化搜索引擎
-    setActiveEngine(currentEngine);
+    setActiveSearchMode(currentSearchMode);
 
     // 全局变量
     let publicLinks = [];
