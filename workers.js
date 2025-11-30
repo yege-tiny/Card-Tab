@@ -4612,6 +4612,7 @@ export default {
         }
       }
 
+      // /api/refreshLinkStatus 已删除，链接状态检测改为浏览器端进行
 
       if (url.pathname === '/api/backupData' && request.method === 'POST') {
         // 🔧 安全修复：添加管理员权限验证
