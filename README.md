@@ -1,5 +1,12 @@
 # Card-Tab 书签卡片式管理，进入管理模式可以自由移动书签位置，添加和删除书签，支持自定义网站分类，支持切换暗色主题
 
+#### 演示站点：  https://dh.qilan.workers.dev   备用网址：https://dh.2.2.a.a.f.f.0.7.0.0.6.2.ip6.arpa
+#### 界面：
+![1745910265848]([https://github.com/user-attachments/assets/bce632fc-d61c-4efe-a74e-e416cab085b8](https://github.com/qilan28/Card-Tab/blob/d1a2137f02813fd195c3e8a9c5708dc1592af70d/img/QQ%E6%88%AA%E5%9B%BE20251201231108.png))
+
+#### 设置界面
+![image]([https://github.com/user-attachments/assets/dc91458a-840c-41f9-9e50-261471320f81](https://github.com/qilan28/Card-Tab/blob/a7ed1802644f767c49d9947b3df1b15d99cd3ec4/img/QQ%E6%88%AA%E5%9B%BE20251201231607.png))
+
 ### [当前版本] - 2025.11.30
 ## ✨ 核心功能
 
@@ -34,25 +41,6 @@
 - **加载动画**：流畅的交互反馈和视觉效果
 
 📋 **查看完整更新历史**: [CHANGELOG.md](./CHANGELOG.md)
-
-
-### 注意：如果你已经部署过第一版（20240902）导航，更新workes代码后将无法看到之前保存的书签，需重新添加书签，望知悉！
-
-#### 2024.09.02 发布 （第一版很轻便，代码保留在history下）
-
-#### 演示站点：  https://dh.qilan.workers.dev   备用网址：https://dh.2.2.a.a.f.f.0.7.0.0.6.2.ip6.arpa
-#### 20250429 更新界面：
-![1745910265848](https://github.com/user-attachments/assets/bce632fc-d61c-4efe-a74e-e416cab085b8)
-
-#### 未登录界面
-![image](https://github.com/user-attachments/assets/dd0cad75-11ce-4691-804f-b4dff5ae2cde)
-
-#### 已登录界面（黑暗主题）
-![image](https://github.com/user-attachments/assets/c18f0df4-8e00-45e6-84db-30f81b545d15)
-
-#### 设置界面
-![image](https://github.com/user-attachments/assets/dc91458a-840c-41f9-9e50-261471320f81)
-
 
 
 # 部署方法：
