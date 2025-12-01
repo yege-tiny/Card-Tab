@@ -2,7 +2,7 @@
 
 #### 演示站点：  https://dh.qilan.workers.dev   备用网址：https://dh.2.2.a.a.f.f.0.7.0.0.6.2.ip6.arpa
 #### 界面：
-![1745910265848]([https://github.com/user-attachments/assets/bce632fc-d61c-4efe-a74e-e416cab085b8](https://github.com/qilan28/Card-Tab/blob/d1a2137f02813fd195c3e8a9c5708dc1592af70d/img/QQ%E6%88%AA%E5%9B%BE20251201231108.png))
+![1745910265848]([[https://github.com/user-attachments/assets/bce632fc-d61c-4efe-a74e-e416cab085b8](https://raw.githubusercontent.com/qilan28/Card-Tab/refs/heads/main/img/QQ%E6%88%AA%E5%9B%BE20251201231607.png)]([https://github.com/qilan28/Card-Tab/blob/d1a2137f02813fd195c3e8a9c5708dc1592af70d/img/QQ%E6%88%AA%E5%9B%BE20251201231108.pn](https://raw.githubusercontent.com/qilan28/Card-Tab/refs/heads/main/img/QQ%E6%88%AA%E5%9B%BE20251201231607.png)g))
 
 #### 设置界面
 ![image]([https://github.com/user-attachments/assets/dc91458a-840c-41f9-9e50-261471320f81](https://github.com/qilan28/Card-Tab/blob/a7ed1802644f767c49d9947b3df1b15d99cd3ec4/img/QQ%E6%88%AA%E5%9B%BE20251201231607.png))
