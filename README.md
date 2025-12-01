@@ -7,7 +7,6 @@
 #### 设置界面
 ![image](https://raw.githubusercontent.com/qilan28/Card-Tab/refs/heads/main/img/QQ%E6%88%AA%E5%9B%BE20251201231607.png)
 
-### [当前版本] - 2025.11.30
 ## ✨ 核心功能
 
 ### 🎨 界面设计
