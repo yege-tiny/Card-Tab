@@ -4,7 +4,8 @@ const HTML_CONTENT = `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天下有雪-我的网址导航</title>    <title>天下有雪-我的导航</title"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⭐</text></svg>">
+    <title>天下有雪-我的个人导航</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⭐</text></svg>">
     <style>
     /* 全局样式 */
     html, body {
@@ -585,7 +586,7 @@ const HTML_CONTENT = `
         padding: 10px 15px;
         font-size: 14px;
         color: #43b883;
-        width: 110px;
+        width: 120px;
         outline: none;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -1830,9 +1831,9 @@ const HTML_CONTENT = `
     </style>
 </head>
 
-<body>
+<body class="dark-theme">
     <div class="fixed-elements">
-        <h3>天下有雪</h3>
+        <h3>天下有雪-我的个人导航</h3>
         <div class="center-content">
             <!-- 一言模块 -->
             <p id="hitokoto">
@@ -1841,11 +1842,11 @@ const HTML_CONTENT = `
             <!-- 搜索栏 -->
             <div class="search-container">
                 <div class="search-bar">
-<select id="search-engine-select">
-    <option value="in_site">站内搜索</option>
-    <option value="bing">必应</option>
-    <option value="google">谷歌</option>
-</select>
+                    <select id="search-engine-select">
+                        <option value="google">谷歌</option>
+                        <option value="bing">必应</option>
+                        <option value="in_site">站内搜索</option>
+                    </select>
                     <input type="text" id="search-input" placeholder="">
                     <button id="search-button">🔍</button>
                 </div>
@@ -2001,20 +2002,20 @@ const HTML_CONTENT = `
     // 页面加载时获取一言
     loadHitokoto();
 
-// 搜索引擎配置
-const searchEngines = {
-    bing: "https://www.bing.com/search?q=",
-    google: "https://www.google.com/search?q="
-};
+    // 搜索引擎配置
+    const searchEngines = {
+        google: "https://www.google.com/search?q=",
+        bing: "https://www.bing.com/search?q="
+    };
 
-let currentEngine = "google";  // 默认设为谷歌
-let isShowingSearchResults = false;
+    let currentEngine = "google";
+    let isShowingSearchResults = false;
 
     // 设置当前搜索模式
     function setActiveEngine(engine) {
         const previousMode = currentEngine;
         currentEngine = engine;
-        document.getElementById('search-engine-select').value = engine;
+        document.getElementById("search-engine-select").value = engine;
         updateSearchPlaceholder();
 
         if (isInSiteSearchMode()) {
@@ -3689,28 +3690,18 @@ let isShowingSearchResults = false;
 
 
 
-// 切换主题
-function toggleTheme() {
-    isDarkTheme = !isDarkTheme;
+    // 切换主题
+    function toggleTheme() {
+        isDarkTheme = !isDarkTheme;
 
-    // 添加或移除暗色主题类
-    if (isDarkTheme) {
-        document.body.classList.add('dark-theme');
-    } else {
-        document.body.classList.remove('dark-theme');
-    }
-    
-    // 更新按钮文本
-    updateThemeToggleButton();
-}
+        // 添加或移除暗色主题类
+        if (isDarkTheme) {
+            document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
+        }
 
-// 更新主题切换按钮文本
-function updateThemeToggleButton() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-        themeToggleBtn.textContent = isDarkTheme ? '☀️' : '◑';
     }
-}
 
     // 返回顶部
     function scrollToTop() {
@@ -3822,19 +3813,14 @@ function updateThemeToggleButton() {
         searchTitle.className = 'search-results-title';
         searchTitle.textContent = '搜索结果 (' + matchedLinks.length + '个)';
 
-// ... 前面的代码保持不变 ...
+        const backButton = document.createElement('button');
+        backButton.className = 'back-to-main';
+        backButton.textContent = '返回主页';
+        backButton.onclick = hideSearchResults;
 
-const backButton = document.createElement('button');
-backButton.className = 'back-to-main';
-backButton.textContent = '返回主页';
-// 确保点击事件正确绑定
-backButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    hideSearchResults();
-});
-
-// ... 后面的代码保持不变 ...
+        searchHeader.appendChild(searchTitle);
+        searchHeader.appendChild(backButton);
+        sectionsContainer.appendChild(searchHeader);
 
         if (matchedLinks.length === 0) {
             const noResults = document.createElement('div');
@@ -3871,76 +3857,67 @@ backButton.addEventListener('click', (e) => {
         }
     }
     
-// 隐藏搜索结果，返回主界面
-function hideSearchResults() {
-    const sectionsContainer = document.getElementById('sections-container');
-    if (!sectionsContainer) return;
-    
-    // 清空当前显示的内容（搜索结果）
-    sectionsContainer.innerHTML = '';
-    
-    // 重置搜索状态
-    isShowingSearchResults = false;
-    
-    // 清除搜索输入框内容
-    document.getElementById('search-input').value = '';
-    
-    // 重新渲染所有分类区域
-    renderSections();
-    
-    // 重新渲染分类按钮
-    renderCategoryButtons();
-    
-    // 确保分类按钮容器显示
-    const categoryButtonsContainer = document.getElementById('category-buttons-container');
-    if (categoryButtonsContainer) {
-        categoryButtonsContainer.style.display = 'flex';
-    }
-    
-    // 重置并加载初始分类
-    if (isAdmin) {
-        // 管理员模式下显示所有分类
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.display = 'block';
-        });
+    // 隐藏搜索结果，返回主界面
+    function hideSearchResults() {
+        const searchResultsSection = document.getElementById('search-results-section');
+        if (searchResultsSection) {
+            searchResultsSection.style.display = 'none';
+        }
+
+        const sectionsContainer = document.getElementById('sections-container');
+        if (sectionsContainer) {
+            sectionsContainer.style.display = 'block';
+        }
         
-        // 如果有激活分类，滚动到该分类
-        if (activeCategory) {
-            setTimeout(() => {
+        isShowingSearchResults = false;
+
+        // 重新渲染分类按钮
+        renderCategoryButtons();
+
+        // 如果是管理员模式，显示所有分类
+        if (isAdmin) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'block';
+            });
+            // 如果有激活分类，滚动到该分类
+            if (activeCategory) {
                 scrollToCategory(activeCategory);
-            }, 100);
-        }
-    } else {
-        // 非管理员模式，初始隐藏所有分类
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.display = 'none';
-        });
-        
-        // 获取第一个分类
-        const categoryList = Object.keys(categories || {});
-        if (categoryList.length > 0) {
-            const firstCategory = categoryList[0];
-            
-            // 使用loadCategoryCards函数加载第一个分类
-            // 这会显示该分类并设置为激活状态
-            loadCategoryCards(firstCategory);
-            
-            // 激活对应的分类按钮
-            updateActiveCategoryButton(firstCategory);
+            }
         } else {
-            activeCategory = null;
-            updateActiveCategoryButton(null);
+            // 非管理员模式，隐藏所有分类区域
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // 如果有激活分类，加载该分类的卡片
+            if (activeCategory) {
+                // 显示当前激活分类
+                const activeSection = document.querySelector('.section[data-category="' + activeCategory + '"]');
+                if (activeSection) {
+                    activeSection.style.display = 'block';
+                }
+                scrollToCategory(activeCategory);
+            } else {
+                // 如果没有激活分类，自动加载第一个分类
+                // 先隐藏所有分类
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // 加载第一个分类
+                const categoryList = Object.keys(categories || {});
+                if (categoryList.length > 0) {
+                    // 使用loadCategoryCards函数加载第一个分类的卡片
+                    // 这个函数会处理显示分类、加载卡片和设置激活状态
+                    loadCategoryCards(categoryList[0]);
+                } else {
+                    // 如果没有分类，重置激活分类
+                    activeCategory = null;
+                    updateActiveCategoryButton(null);
+                }
+            }
         }
     }
-    
-    // 滚动回顶部
-    setTimeout(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, 200);
-}
 
 // 验证密码
 async function verifyPassword(inputPassword) {
@@ -3996,80 +3973,72 @@ async function verifyPassword(inputPassword) {
     // 添加滚动事件监听器
     window.addEventListener('scroll', handleBackToTopVisibility);
     
- // 初始化加载
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        await validateToken();
-        updateLoginButton();
-        await loadLinks();
-        
-        // 渲染分类和链接
-        renderSections();
-        
-        // 立即应用暗色主题
-        if (isDarkTheme) {
-            document.body.classList.add('dark-theme');
-        }
-        
-        // 更新主题切换按钮文本
-        updateThemeToggleButton();
-        
-        // 初始加载完成后，如果是管理员模式显示所有分类，否则保持分类收缩
-        setTimeout(() => {
-            if (isAdmin) {
-                // 管理员模式显示所有分类
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.display = 'block';
-                });
-            } else {
-                // 非管理员模式下首次加载自动显示第一个分类
-                // 先隐藏所有分类
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.display = 'none';
-                });
-                
-                // 加载第一个分类
-                const categoryList = Object.keys(categories || {});
-                if (categoryList.length > 0) {
-                    // 设置激活分类
-                    const firstCategory = categoryList[0];
-                    
-                    // 使用loadCategoryCards函数加载第一个分类的卡片
-                    // 这个函数会处理显示分类、加载卡片和设置激活状态
-                    loadCategoryCards(firstCategory);
+    // 初始化加载
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            await validateToken();
+            updateLoginButton();
+            await loadLinks();
+            
+            // 渲染分类和链接
+            renderSections();
+            
+            // 初始加载完成后，如果是管理员模式显示所有分类，否则保持分类收缩
+            setTimeout(() => {
+                if (isAdmin) {
+                    // 管理员模式显示所有分类
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.style.display = 'block';
+                    });
                 } else {
-                    // 如果没有分类，重置激活分类
-                    activeCategory = null;
+                    // 非管理员模式下首次加载自动显示第一个分类
+                    // 先隐藏所有分类
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // 加载第一个分类
+                    const categoryList = Object.keys(categories || {});
+                    if (categoryList.length > 0) {
+                        // 设置激活分类
+                        const firstCategory = categoryList[0];
+                        
+                        // 使用loadCategoryCards函数加载第一个分类的卡片
+                        // 这个函数会处理显示分类、加载卡片和设置激活状态
+                        loadCategoryCards(firstCategory);
+                    } else {
+                        // 如果没有分类，重置激活分类
+                        activeCategory = null;
+                    }
                 }
-            }
+                
+                // 无论如何，都要渲染分类按钮
+                renderCategoryButtons();
+                
+                // 确保分类按钮容器是显示的
+                const categoryButtonsContainer = document.getElementById('category-buttons-container');
+                if (categoryButtonsContainer) {
+                    categoryButtonsContainer.style.display = 'flex';
+                }
+                
+                // 更新分类按钮状态
+                updateActiveCategoryButton(activeCategory);
+                
+                // 如果有激活分类，滚动到该分类
+                if (activeCategory) {
+                    scrollToCategory(activeCategory);
+                }
+            }, 500);
             
-            // 无论如何，都要渲染分类按钮
-            renderCategoryButtons();
+            // 初始化返回顶部按钮状态
+            setTimeout(handleBackToTopVisibility, 100);
             
-            // 确保分类按钮容器是显示的
-            const categoryButtonsContainer = document.getElementById('category-buttons-container');
-            if (categoryButtonsContainer) {
-                categoryButtonsContainer.style.display = 'flex';
-            }
-            
-            // 更新分类按钮状态
-            updateActiveCategoryButton(activeCategory);
-            
-            // 如果有激活分类，滚动到该分类
-            if (activeCategory) {
-                scrollToCategory(activeCategory);
-            }
-        }, 500);
-        
-        // 初始化返回顶部按钮状态
-        setTimeout(handleBackToTopVisibility, 100);
-        
-        // 链接状态会在卡片加载时通过 Favicon 自动检测，无需手动调用
-    } catch (error) {
-        // 🔧 安全修复：避免泄露详细错误信息
-        console.error('Initialization failed');
-    }
-});
+            // 链接状态会在卡片加载时通过 Favicon 自动检测，无需手动调用
+        } catch (error) {
+            // 🔧 安全修复：避免泄露详细错误信息
+            console.error('Initialization failed');
+        }
+    });
 
 
     // 前端检查是否有 token
@@ -4348,7 +4317,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     <!-- 底部版权信息 -->
     <div id="copyright">
         <div class="copyright-container">
-            <span class="site-title">天下有雪</span>
+            <span class="site-title">天下有雪-我的个人导航</span>
             <p>&copy; 2025 <a href="https://github.com/qilan28/Card-Tab" target="_blank">Card-Tab</a></p>
             <div class="buttons-group">
                 <button class="admin-btn" id="admin-btn" style="display: none;">设置</button>
