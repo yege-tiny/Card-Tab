@@ -4,7 +4,7 @@ const HTML_CONTENT = `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>柒蓝个人导航页</title>
+    <title>天下有雪导航页</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⭐</text></svg>">
     <style>
     /* 全局样式 */
@@ -1833,7 +1833,7 @@ const HTML_CONTENT = `
 
 <body>
     <div class="fixed-elements">
-        <h3>柒蓝导航</h3>
+        <h3>天下有雪</h3>
         <div class="center-content">
             <!-- 一言模块 -->
             <p id="hitokoto">
@@ -4322,7 +4322,7 @@ async function verifyPassword(inputPassword) {
     <!-- 底部版权信息 -->
     <div id="copyright">
         <div class="copyright-container">
-            <span class="site-title">柒蓝导航</span>
+            <span class="site-title">天下有雪</span>
             <p>&copy; 2025 <a href="https://github.com/qilan28/Card-Tab" target="_blank">Card-Tab</a></p>
             <div class="buttons-group">
                 <button class="admin-btn" id="admin-btn" style="display: none;">设置</button>
