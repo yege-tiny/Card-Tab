@@ -1845,7 +1845,6 @@ const HTML_CONTENT = `
                     <select id="search-engine-select">
                         <option value="google">谷歌</option>
                         <option value="bing">必应</option>
-                        <option value="in_site">站内搜索</option>
                     </select>
                     <input type="text" id="search-input" placeholder="">
                     <button id="search-button">🔍</button>
